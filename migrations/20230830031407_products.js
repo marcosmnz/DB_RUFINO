@@ -11,7 +11,7 @@ exports.up = function (knex) {
         table.increments('product_id').primary()// en knex usamos increments en vez de serial como tipo de dato
         table.string('product_name').notNullable() // notNullable es que no puede quedar nulo (not null)
         table.text('description')
-        table.integer('price').notNullable()
+        table.decimal('price').notNullable()
         table.integer('sku').notNullable()
         table.boolean('active').notNullable().defaultTo(true) // defaultTo: Especifico un valor por defecto
         table.timestamp('created_at').defaultTo(knex.fn.now()) // knex.fn.now() me devuelve la fecha y hora actual al momento se crear el registro en la base de datos.
