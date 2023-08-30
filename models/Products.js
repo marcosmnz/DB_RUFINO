@@ -44,6 +44,14 @@ const softDeleteOneProduct = (productId) => {
     .from('products')
     .where({ product_id: productId })
 }
+const recoveryProduct = (productId) => {
+  return knex
+    .update({ active: true })
+    .from('products')
+    .where({ product_id: productId })
+    .where({ active: false })
+    .returning('*')
+}
 
 module.exports = {
   createProduct,
@@ -51,5 +59,6 @@ module.exports = {
   findOneProduct,
   updateProduct,
   destroyOneProduct,
-  softDeleteOneProduct
+  softDeleteOneProduct,
+  recoveryProduct
 }

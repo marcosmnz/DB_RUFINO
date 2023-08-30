@@ -48,11 +48,18 @@ const softDeleteOneClient = (req, res) => {
     .catch(err => res.status(400).send(err.message))
 }
 
+const recoveryClient = (req, res) => {
+  clientsModel.recoveryClient(req.params.clientId)
+    .then(() => res.status(200).send())
+    .catch(err => res.status(400).send(err.message))
+}
+
 module.exports = {
   createClient,
   findAllClients,
   findOneClient,
   updateClient,
   destroyOneClient,
-  softDeleteOneClient
+  softDeleteOneClient,
+  recoveryClient
 }

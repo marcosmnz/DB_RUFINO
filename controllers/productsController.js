@@ -36,13 +36,19 @@ const updateProduct = (req, res) => {
 
 const destroyOneProduct = (req, res) => {
   productsModel.destroyOneProduct(req.params.productId)
-    .then(row => res.status(204).send(row))
+    .then(() => res.status(204).send())
     .catch(err => res.status(400).send(err.message))
 }
 
 const softDeleteOneProduct = (req, res) => {
   productsModel.softDeleteOneProduct(req.params.productId)
-    .then(row => res.status(204).send(row))
+    .then(() => res.status(204).send())
+    .catch(err => res.status(400).send(err.message))
+}
+
+const recoveryProduct = (req, res) => {
+  productsModel.recoveryProduct(req.params.productId)
+    .then(() => res.status(200).send())
     .catch(err => res.status(400).send(err.message))
 }
 
@@ -52,5 +58,6 @@ module.exports = {
   findOneProduct,
   updateProduct,
   destroyOneProduct,
-  softDeleteOneProduct
+  softDeleteOneProduct,
+  recoveryProduct
 }

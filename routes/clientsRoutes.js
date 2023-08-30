@@ -8,5 +8,6 @@ router.post('/clients', clientsController.createClient)
 router.patch('/clients/:clientId', clientsController.updateClient)
 router.delete('/clients/:clientId', clientsController.softDeleteOneClient)
 router.delete('/clients/destroy/:clientId', clientsController.destroyOneClient)
+router.patch('/clients/recovery/:clientId', clientsController.recoveryClient)
 
 module.exports = router

@@ -45,11 +45,21 @@ const softDeleteOneClient = (clientId) => {
     .where({ client_id: clientId })
 }
 
+const recoveryClient = (clientId) => {
+  return knex
+    .update({ active: true })
+    .from('clients')
+    .where({ client_id: clientId })
+    .where({ active: false })
+    .returning('*')
+}
+
 module.exports = {
   createClient,
   findAllClients,
   findOneClient,
   updateClient,
   destroyOneClient,
-  softDeleteOneClient
+  softDeleteOneClient,
+  recoveryClient
 }
